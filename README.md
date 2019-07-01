@@ -65,3 +65,31 @@ print(f'>> {evaluate("a b c * -", variables)}')
 # >> -6
 ```
 
+## Real/Usefull Exemple
+**Bhaskara Formula**
+``` python
+expr_1 = '( 0 - b + ( ( b ** 2 - 4 * a * c ) ) ** sqrt ) / 2 * a'
+expr_2 = '( 0 - b - ( ( b ** 2 - 4 * a * c ) ) ** sqrt ) / 2 * a'
+
+print(f">> {to_postfix(expr_1)}")
+# >> 0 b - b 2 ** 4 a * c * - sqrt ** + 2 / a *
+
+print(f">> {to_postfix(expr_2)}")
+# >> 0 b - b 2 ** 4 a * c * - sqrt ** - 2 / a *
+
+variables = {'a': 1, 'b': -5, 'c': 6, 'sqrt': 0.5}
+print(f">> {evaluate('0 b - b 2 ** 4 a * c * - sqrt ** + 2 / a *', variables)}")
+# >> 3.0
+print(f">> {evaluate('0 b - b 2 ** 4 a * c * - sqrt ** - 2 / a *', variables)}")
+# >> 2.0
+```
+
+## Tips
+###### This algorithm doesn't support square root. But try:
+``` python
+sqrt(8) == pow(8, 0.5) == 8 ** 0.5
+``` 
+###### This algorithm doesn't support negative numbers in to_postfix() method. But try::
+``` python
+-8 == 0 - 8
+``` 
