@@ -32,9 +32,6 @@ def to_postfix(infix):
                 postfix += stack.pop()
                 postfix += " "
 
-    if evaluate:
-        return postfix
-
     return postfix[:-1]
 
 def evaluate(postfix, variables={}):
